@@ -7,9 +7,7 @@
       </h1>
     </header>
     <main>
-      <b-field label="US State/Territory Search">
-        <b-input v-model="usStatesFilter"></b-input>
-      </b-field>
+      <vue-composition-demo-filter/>
       <template v-if="hasUsStateMatches">
         <ul :class="{'list-fetching': usStatesFetching}">
           <li v-for="state in usStatesMatchingSearch" :key="state">
@@ -20,18 +18,26 @@
       <template v-else>
         <p>No matches found</p>
       </template>
+      <div v-if="false">
+        <p>Width: {{ width }}</p>
+        <p>Height: {{ height }}</p>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
 import debounce from 'lodash/debounce'
-import { computed, reactive, toRefs, watch } from '@vue/composition-api'
+import { computed, provide, reactive, toRefs, watch } from '@vue/composition-api'
 import usStatesService from '@/services/usStatesService.js'
+import VueCompositionDemoFilter from '@/views/VueCompositionDemoFilter.vue'
+// import useWindowResize from '@/composition/useWindowResize.js'
 
 export default {
   name: 'VueCompositionDemo',
+  components: { VueCompositionDemoFilter },
   setup () {
+    // const { width, height, stopResizeListener } = useWindowResize()
     const state = reactive({
       usStatesFilter: '',
       usStatesFetching: false,
@@ -50,9 +56,17 @@ export default {
       await searchForUsStates()
     }, 500))
 
+    // onBeforeUnmount(() => {
+    //   stopResizeListener()
+    // })
+
+    provide('state', state)
+
     return {
       ...toRefs(state),
       hasUsStateMatches
+      // width,
+      // height
     }
   }
 }
