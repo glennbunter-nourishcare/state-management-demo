@@ -1,5 +1,5 @@
 <template>
-  <b-field label="US State/Territory Search">
+  <b-field label="US State/Territory/Protectorate Search">
     <b-input v-model="state.usStatesFilter"></b-input>
   </b-field>
 </template>
@@ -17,7 +17,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

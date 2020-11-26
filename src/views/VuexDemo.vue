@@ -7,7 +7,7 @@
       </h1>
     </header>
     <main>
-      <b-field label="US State/Territory Search">
+      <b-field label="US State/Territory/Protectorate Search">
         <b-input v-model="search"></b-input>
       </b-field>
       <template v-if="hasUsStateMatches">
