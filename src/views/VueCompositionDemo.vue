@@ -46,7 +46,6 @@ export default {
       state.usStatesFetching = false
     }
 
-    // debounce doesn't work in watch fn
     watch(() => state.usStatesFilter, debounce(async () => {
       await searchForUsStates()
     }, 500))
