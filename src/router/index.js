@@ -13,12 +13,12 @@ const routes = [
     component: Home
   },
   {
-    path: '/',
+    path: '/vuex-demo',
     name: 'VuexDemo',
     component: VuexDemo
   },
   {
-    path: '/',
+    path: '/vue-composition-demo',
     name: 'VueCompositionDemo',
     component: VueCompositionDemo
   }

@@ -18,7 +18,7 @@ export default new Vuex.Store({
     usStatesMatchingSearch (state, usStatesMatchingSearch = []) {
       state.usStatesMatchingSearch = [...usStatesMatchingSearch]
     },
-    usStatesFetching (state, usStatesFetching = null) {
+    usStatesFetching (state, usStatesFetching = false) {
       state.usStatesFetching = usStatesFetching
     }
   },
