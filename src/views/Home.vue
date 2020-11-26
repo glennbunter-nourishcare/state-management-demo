@@ -1,18 +1,16 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="is-flex is-justify-content-space-between mt-6">
+    <b-button tag="router-link" type="is-primary" size="is-large" :to="{name: 'VuexDemo'}">Vuex Demo</b-button>
+    <b-button tag="router-link" type="is-primary" size="is-large" :to="{name: 'VueCompositionDemo'}">Vue Composition Demo</b-button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  name: 'Home'
 }
 </script>
+
+<style scoped>
+
+</style>
