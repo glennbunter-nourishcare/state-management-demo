@@ -1,4 +1,7 @@
-import { reactive, toRefs } from '@vue/composition-api'
+import {
+  reactive,
+  toRefs
+} from '@vue/composition-api'
 
 export default function useWindowResize () {
   const state = reactive({

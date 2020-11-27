@@ -8,7 +8,9 @@ import VueCompositionApi from '@vue/composition-api'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 Vue.config.productionTip = false
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconPack: 'fas'
+})
 Vue.use(VueCompositionApi)
 
 new Vue({

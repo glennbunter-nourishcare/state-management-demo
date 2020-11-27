@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <router-view/>
+    <div class="mx-2">
+      <router-view/>
+    </div>
   </div>
 </template>
 <script>

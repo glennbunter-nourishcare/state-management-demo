@@ -1,6 +1,10 @@
 <template>
-  <b-field label="US State/Territory/Protectorate Search">
-    <b-input v-model="state.usStatesFilter"></b-input>
+  <b-field label="US State/Territory Search">
+    <b-input
+      v-model="state.usStatesFilter"
+      :loading="state.usStatesFetching"
+      @focus="$event.target.select()"
+    />
   </b-field>
 </template>
 

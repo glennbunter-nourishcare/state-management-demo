@@ -3,42 +3,50 @@
     <header>
       <h1 class="is-size-2 has-text-weight-bold">
         Vuex Demo
-        <i class="fas fa-spinner fa-spin" v-show="usStatesFetching"></i>
+        <loading-spinner :active="usStatesFetching"/>
       </h1>
     </header>
     <main>
-      <b-field label="US State/Territory/Protectorate Search">
-        <b-input v-model="search"></b-input>
-      </b-field>
-      <template v-if="hasUsStateMatches">
-        <ul :class="{'list-fetching': usStatesFetching}">
-          <li v-for="state in usStatesMatchingSearch" :key="state">
-            {{ state }}
-          </li>
-        </ul>
-      </template>
-      <template v-else>
-        <p>No matches found</p>
-      </template>
+      <vuex-demo-filter/>
+      <transition-group
+        name="fade"
+        tag="ul"
+        class="list-group"
+      >
+        <li
+          v-for="state in usStatesMatchingSearch"
+          :key="state"
+          class="list-group-item"
+        >
+          {{ state }}
+        </li>
+      </transition-group>
+      <p v-show="!hasUsStateMatches && !usStatesFetching">
+        No matches found
+      </p>
     </main>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'
+import {
+  mapState,
+  mapActions,
+  mapGetters
+} from 'vuex'
 import debounce from 'lodash/debounce'
+import VuexDemoFilter from '@/views/VuexDemoFilter.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
+
+// TODO: Demo mixin?
 
 export default {
   name: 'VuexDemo',
+  components: {
+    LoadingSpinner,
+    VuexDemoFilter
+  },
   computed: {
-    search: {
-      get () {
-        return this.usStatesFilter
-      },
-      set (value) {
-        this.setUsStatesFilter(value)
-      }
-    },
     ...mapState([
       'usStatesMatchingSearch',
       'usStatesFetching',
@@ -51,10 +59,7 @@ export default {
   methods: {
     ...mapActions([
       'searchForUsStates'
-    ]),
-    ...mapMutations({
-      setUsStatesFilter: 'usStatesFilter'
-    })
+    ])
   },
   watch: {
     usStatesFilter: debounce(function () {
@@ -63,9 +68,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.list-fetching {
-  opacity: .5;
-}
-</style>
